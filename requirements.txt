@@ -1,0 +1,23 @@
+# PyTorch core library for tensor computation and deep learning
+torch
+
+# Companion library for PyTorch with image transformation utilities and pretrained models
+torchvision
+
+# Numerical computing library for arrays, matrices, and numerical functions
+numpy
+
+# Library for reading and writing NRRD (Nearly Raw Raster Data) files used in medical imaging
+nrrd
+
+# Plotting library used to visualize 2D slices of 3D data volumes
+matplotlib
+
+# Machine learning library used for data splitting (e.g., train/test split)
+scikit-learn
+
+# YAML file support for reading configuration files in train.py
+PyYAML
+
+# Progress bar library used to display training progress in terminal
+Tqdm
