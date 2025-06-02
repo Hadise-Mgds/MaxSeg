@@ -1,0 +1,62 @@
+import os
+import numpy as np
+import nrrd
+import torch
+from torch.utils.data import DataLoader, TensorDataset
+from sklearn.model_selection import train_test_split
+
+def load_nrrd_volume(image_dir, label_dir, volume_shape):
+    """
+    Load 3D image and label volumes from NRRD files and return as NumPy arrays.
+
+    Args:
+        image_dir (str): Directory containing image NRRD files.
+        label_dir (str): Directory containing label NRRD files.
+        volume_shape (tuple): Target shape (depth, height, width) for each volume.
+
+    Returns:
+        Tuple[np.ndarray, np.ndarray]: Arrays of shape (N, 1, D, H, W) for images and labels.
+    """
+    image_filenames = sorted([f for f in os.listdir(image_dir) if f.startswith('image') and f.endswith('.nrrd')])
+    label_filenames = sorted([f for f in os.listdir(label_dir) if f.startswith('label') and f.endswith('.nrrd')])
+
+    num_samples = len(image_filenames)
+    images_array = np.zeros((num_samples, *volume_shape), dtype=np.float32)
+    labels_array = np.zeros((num_samples, *volume_shape), dtype=np.float32)
+
+    for idx, (img_filename, lbl_filename) in enumerate(zip(image_filenames, label_filenames)):
+        image_data, _ = nrrd.read(os.path.join(image_dir, img_filename))
+        label_data, _ = nrrd.read(os.path.join(label_dir, lbl_filename))
+        images_array[idx] = image_data
+        labels_array[idx] = label_data
+
+    # Add channel dimension (N, 1, D, H, W)
+    images_array = np.expand_dims(images_array, axis=1)
+    labels_array = np.expand_dims(labels_array, axis=1)
+
+    return images_array, labels_array
+
+def create_dataloaders(images, labels, batch_size, test_split_ratio=0.2):
+    """
+    Split data into training and test sets and return corresponding PyTorch DataLoaders.
+
+    Args:
+        images (np.ndarray): Input image volumes.
+        labels (np.ndarray): Corresponding label volumes.
+        batch_size (int): Batch size for training and evaluation.
+        test_split_ratio (float): Fraction of data to reserve for testing.
+
+    Returns:
+        Tuple[DataLoader, DataLoader]: Train and test DataLoaders.
+    """
+    images_train, images_test, labels_train, labels_test = train_test_split(
+        images, labels, test_size=test_split_ratio, random_state=42
+    )
+
+    train_dataset = TensorDataset(torch.from_numpy(images_train), torch.from_numpy(labels_train))
+    test_dataset = TensorDataset(torch.from_numpy(images_test), torch.from_numpy(labels_test))
+
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+
+    return train_loader, test_loader
