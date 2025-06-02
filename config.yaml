@@ -1,0 +1,20 @@
+# The shape (depth, height, width) of the 3D image volumes used for training and inference
+volume_dimensions: [256, 256, 256]
+
+# Number of training samples to process in each batch
+batch_size: 1
+
+# Total number of training epochs
+num_epochs: 20
+
+# Learning rate used by the optimizer
+learning_rate: 0.001
+
+# Random seed for reproducibility
+random_seed: 42
+
+# Path to the directory containing 3D NRRD image files
+input_image_dir: data/maxilla
+
+# Path to the directory containing corresponding 3D NRRD label/mask files
+ground_truth_dir: data/maxilla
