@@ -1,4 +1,4 @@
-**CBCT Dataset for Deep Learning-based Segmentation and Virtual Surgical Planning in Bimaxillary Surgery**
+# CBCT Dataset for Deep Learning-based Segmentation and Virtual Surgical Planning in Bimaxillary Surgery
 
 Abstract
 Virtual Surgical Planning (VSP) is essential for patient-centric care in craniomaxillofacial surgeries, particularly in bimaxillary orthognathic surgeries involving maxilla and mandible repositioning. VSP in bimaxillary orthognathic surgery requires 3D surface models of the target structure that rely on accurate segmentation from imaging data, such as Computed Tomography (CT) or Cone-Beam Computed Tomography (CBCT) scans. Accurate maxilla segmentation is vital yet challenging due to its complex morphology compared to the mandible. While manual maxilla segmentation remains common, it is time-consuming, laborious, and lacks reproducibility. To address these limitations, automating maxilla segmentation using Deep Learning methods is proposed. However, it's important to acknowledge that manual segmentation is an important step as the gold standard for validating purposes in supervised deep learning methods. To the best of our knowledge, there are no publicly available maxilla-labeled datasets. In this study, we present the first open-access high-quality collection of CBCT images and corresponding maxilla labels from patients who underwent orthognathic surgery called MaxSeg.
@@ -18,38 +18,29 @@ Steps of the proposed methodology to create reliable 3D models of the maxilla.
 ![image](https://github.com/user-attachments/assets/170a24b0-b368-457b-bf8e-28c2adb724c2)
 
 Results of manual segmentation. (a) Teeth, (b) Zygomaticomaxillary suture, (c) Anterior nasal spine, (d) Nasomaxillary (vertical) and Frontomaxillary (horizontal) sutures, and (e) Sinus thin walls.
-
-**How to use**
-
-# 3D U-Net for Maxilla Segmentation
-This repository contains PyTorch code for segmenting medical images using a custom 3D U-Net (U3Net).
-## Usage
-1. Place your `.nrrd` files into `data/maxilla/`.
-2. Update `config.yaml` with the correct shape and paths.
-3. Train the model:
-```bash
-python train.py
-
-
-**How to cite**
-
+# How to cite
 If you use the content of this repository, please consider citing us as below,
 
 @article{Mgds2025open,
 title={CBCT Dataset for Deep Learning-based Segmentation and Virtual Surgical Planning in Bimaxillary Surgery},
 author={Hadis Moghaddasi, Reza Naghne, Ebrahim Najafzadeh, Alireza Ahmadian, Parastoo Farnia, Alireza parhiz},
 journal={Scientific data},
+
 volume={ },
+
 number={ },
+
 pages={ },
+
 year={2025},
+
 publisher {Nature Publishing Group UK London}
+
 }
 
-
-**project structure**
-
+# project structure
 maxilla-segmentation/
+
 ├── README.md
 
 ├── requirements.txt
@@ -71,4 +62,13 @@ maxilla-segmentation/
 ├── train.py
 
 └── visualize.py
+
+# 3D U-Net for Maxilla Segmentation
+This repository contains PyTorch code for segmenting medical images using a custom 3D U-Net (U3Net).
+## Usage
+1. Place your `.nrrd` files into `data/maxilla/`.
+2. Update `config.yaml` with the correct shape and paths.
+3. Train the model:
+```bash
+python train.py
 
