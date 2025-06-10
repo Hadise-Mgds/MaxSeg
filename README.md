@@ -70,7 +70,6 @@ Qualitative results of coarse segmentation of the maxilla.
 
 Results of fine segmentation in the corresponding areas missed by coarse segmentation of the maxilla.
 
-
 # How to cite
 If you use the content of this repository, please consider citing us as below,
 
@@ -78,17 +77,7 @@ If you use the content of this repository, please consider citing us as below,
 title={CBCT Dataset for Deep Learning-based Segmentation and Virtual Surgical Planning in Bimaxillary Surgery},
 author={Hadis Moghaddasi, Reza Naghne, Ebrahim Najafzadeh, Alireza Ahmadian, Parastoo Farnia, Alireza parhiz},
 journal={Scientific data},
-
-volume={ },
-
-number={ },
-
-pages={ },
-
-year={2025},
-
-publisher {Nature Publishing Group UK London}
-
+volume={ },number={ },pages={ },year={2025},publisher {Nature Publishing Group UK London}
 }
 
 # project structure
